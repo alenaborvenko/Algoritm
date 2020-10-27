@@ -21,3 +21,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/backpack/backpack/nbproject/private/
+/backpack/backpack/build/
+/backpack/backpack/dist/
+/Hanoi/Hanoi/nbproject/private/
+/Hanoi/Hanoi/build/
+/Hanoi/Hanoi/dist/
+/КонечныеАвтоматы/КонечныеАвтоматы/nbproject/private/
+/КонечныеАвтоматы/КонечныеАвтоматы/build/
