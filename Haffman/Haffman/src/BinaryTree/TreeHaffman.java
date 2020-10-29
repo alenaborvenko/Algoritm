@@ -157,7 +157,11 @@ public class TreeHaffman {
      * @param leghtString - длина строки
      */
     public static void traversalTree(TreeHaffmanNode root, String decode, int leghtString) {
-        recursiveTraversalTree(root, root, decode, 0, leghtString);
+        
+        int i = 0;
+        while (i < leghtString) {
+            i = recursiveTraversalTree(root, root, decode, i, leghtString);
+        }
     }
 
     /**
@@ -168,27 +172,28 @@ public class TreeHaffman {
      * @param decode - декодированная строка
      * @param i - текущий символ в закодированной строке
      * @param leghtString - длина строки
+     * @return возвращем на каком числе мы остановились
      */
-    public static void recursiveTraversalTree(TreeHaffmanNode root, TreeHaffmanNode rootforStep, String decode, int i, int leghtString) {
-        if (i == leghtString) {
-            return;
+    public static int recursiveTraversalTree(TreeHaffmanNode root, TreeHaffmanNode rootforStep, String decode, int i, int leghtString) {
+        // крайний случай рекурсии, когда встретили первый символ печатаем его и выходим из рекурсии
+        if(rootforStep.getSymbol() != '\u0000'){
+           System.out.print(rootforStep.getSymbol()); 
         }
-        char leftOrRight = decode.charAt(i);
-        // если встретился 0 идем в левую ветку, иначе в правую ветку, пока не дойдем до символа
-        if (leftOrRight == '0') {
-            rootforStep = rootforStep.getLeft();
-            if (rootforStep.getSymbol() != '\u0000') {
-                System.out.print(rootforStep.getSymbol());
-                rootforStep = root;
-            }
-        } else {
-            rootforStep = rootforStep.getRight();
-            if (rootforStep.getSymbol() != '\u0000') {
-                System.out.print(rootforStep.getSymbol());
-                rootforStep = root;
-            }
-        }
+        else{
+            // получим символ закодированной строки
+            char leftOrRight = decode.charAt(i);
+            // если встретился 0 идем в левую ветку, иначе в правую ветку, пока не дойдем до символа
+            if (leftOrRight == '0') {
+                rootforStep = rootforStep.getLeft();
 
-        recursiveTraversalTree(root, rootforStep, decode, i + 1, leghtString);
+            } else {
+                rootforStep = rootforStep.getRight();
+
+            }
+            // идем в рекурсию, и увеличиваем i (нам в рекурсии нужен следующий символ, пока не дойдем до листа)
+           i =  recursiveTraversalTree(root, rootforStep, decode, ++i, leghtString);
+
+        }
+        return i;
     }
 }

@@ -63,7 +63,7 @@ public class HaffmanEncode {
         for(int i = 0; i < k; i++){
             StringTokenizer string = new StringTokenizer(input.nextLine());
             // получим символ (это именно первый элемент в строке)
-            Character key = string.nextToken().charAt(0);
+            Character key = string.nextToken(":").charAt(0);
             // получим значение и удалим все лишние пробелы
             String value = string.nextToken().strip();
             resultMap.put(key, value);
